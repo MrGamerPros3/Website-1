@@ -1,110 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WhatsApp AI Bot for Salons</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>SmartSalon AI - WhatsApp Automatisierung für Salons</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
+    * { box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
-      background: #f9f9f9;
-      color: #111;
+      padding: 0;
+      background: #f6f7fb;
+      color: #1a1a1a;
+      line-height: 1.6;
     }
     header {
-      background: #111;
+      background: linear-gradient(135deg, #111827, #1f2937);
       color: #fff;
-      padding: 3rem 2rem;
       text-align: center;
+      padding: 4rem 2rem;
     }
     header h1 {
-      font-size: 2rem;
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
     }
     header p {
       font-size: 1.2rem;
-      margin-top: 0.5rem;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
     }
     .cta {
-      background: #ff4500;
+      background: #10b981;
       color: #fff;
-      padding: 1rem 2rem;
+      padding: 0.9rem 2rem;
       border-radius: 8px;
       text-decoration: none;
+      font-weight: 600;
       display: inline-block;
-      margin-top: 1.5rem;
+      margin-top: 1rem;
+      transition: background 0.3s ease;
+    }
+    .cta:hover {
+      background: #059669;
     }
     section {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
     }
-    h2 {
+    section h2 {
       font-size: 1.8rem;
       margin-top: 2rem;
+      color: #111827;
     }
-    ul, p {
-      font-size: 1rem;
-      line-height: 1.6;
+    section ul {
+      padding-left: 1.2rem;
+    }
+    section ul li {
+      margin-bottom: 0.5rem;
+    }
+    .faq-toggle {
+      margin-top: 1rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 1rem;
+    }
+    .faq-toggle h4 {
+      cursor: pointer;
+      margin: 0;
+    }
+    .faq-toggle p {
+      display: none;
+      margin: 0.5rem 0 0;
     }
     footer {
-      background: #111;
-      color: #fff;
+      background: #111827;
+      color: #ccc;
       text-align: center;
-      padding: 2rem;
-      margin-top: 3rem;
+      padding: 2rem 1rem;
+      margin-top: 4rem;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>WhatsApp AI Bot for Salons</h1>
-    <p>Automatisiere deine Terminverwaltung mit WhatsApp, KI & Google Kalender</p>
-    <a href="#buy" class="cta">Jetzt für $39 sichern</a>
+    <h1>SmartSalon AI</h1>
+    <p>Automatisiere Terminbuchungen für deinen Salon mit WhatsApp, Google Kalender & KI</p>
+    <a href="#buy" class="cta">Jetzt für $39 starten</a>
   </header>
 
   <section>
     <h2>✨ Was dieser Bot macht</h2>
     <ul>
-      <li><strong>📱 Sofortige Terminbuchung:</strong> WhatsApp-Buchung mit Google-Kalender-Sync</li>
-      <li><strong>🤖 Intelligente Gesprächssteuerung:</strong> GPT-KI beantwortet Fragen & verwaltet Termine</li>
-      <li><strong>📊 Business-Management:</strong> Airtable-Integration, Kundenhistorie, Preiskatalog</li>
-      <li><strong>🛡️ Schutz:</strong> Fehlerbehandlung, Anti-Spam, Backup-Systeme</li>
+      <li><strong>📱 Sofortige Terminbuchung:</strong> Kunden buchen direkt über WhatsApp</li>
+      <li><strong>🤖 Intelligente Gespräche:</strong> KI beantwortet Fragen, storniert & verschiebt Termine</li>
+      <li><strong>📅 Kalender-Integration:</strong> Automatisch in Google Kalender eintragen</li>
+      <li><strong>📈 Airtable-Sync:</strong> Kunden & Services in Datenbank verwalten</li>
+      <li><strong>⛨ Fehlerhandling:</strong> Schutz vor Spam, Backups, Owner-Alerts</li>
     </ul>
 
-    <h2>📦 Enthalten</h2>
+    <h2>📦 Was du bekommst</h2>
     <ul>
-      <li>✅ Voller n8n Workflow (200+ Nodes)</li>
-      <li>✅ Airtable-Templates (Dienste, Kunden, Buchungen)</li>
-      <li>✅ Setup Guide (PDF mit Screenshots)</li>
-      <li>✅ API-Konfigurations-Checkliste</li>
+      <li>✅ Vollständiger n8n Workflow (200+ Nodes)</li>
+      <li>✅ Setup-Guide mit Screenshots</li>
+      <li>✅ Airtable-Templates für Services, Buchungen, Config</li>
+      <li>✅ Checkliste für alle API-Verbindungen</li>
     </ul>
 
-    <h2>💸 ROI für dein Business</h2>
-    <p><strong>Zeitersparnis:</strong> Spart dir >70% deiner Anrufzeit, 24/7 verfügbar</p>
-    <p><strong>Mehr Umsatz:</strong> Buchungen außerhalb der Öffnungszeiten, weniger No-Shows</p>
+    <h2>💸 Warum sich das lohnt</h2>
+    <p><strong>Spart Zeit:</strong> Reduziert Anrufaufwand um 70%, arbeitet rund um die Uhr.</p>
+    <p><strong>Mehr Umsatz:</strong> Buchungen außerhalb der Öffnungszeiten, weniger No-Shows.</p>
 
     <h2>🚀 Technische Voraussetzungen</h2>
     <ul>
       <li>n8n Account</li>
       <li>WhatsApp Business API Zugang</li>
-      <li>Google Kalender & Airtable Account</li>
-      <li>OpenAI & Gemini API Key</li>
-      <li>Redis (kostenlos möglich)</li>
+      <li>Google Kalender & Airtable (Free Tier reicht)</li>
+      <li>OpenAI API + Google Gemini</li>
+      <li>Redis (kostenlos nutzbar)</li>
     </ul>
 
-    <h2>❓ FAQ</h2>
-    <ul>
-      <li><strong>Benötige ich Programmierkenntnisse?</strong> Nein! Alles per Copy-Paste einrichtbar.</li>
-      <li><strong>Kann ich es anpassen?</strong> Ja! Services, Öffnungszeiten, Sprache etc. sind editierbar.</li>
-      <li><strong>Funktioniert das international?</strong> Ja, unterstützt mehrere Sprachen & Zeitzonen.</li>
-    </ul>
+    <h2>❓ Häufige Fragen</h2>
+    <div class="faq-toggle">
+      <h4 onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block') ? 'none' : 'block'">Benötige ich Programmierkenntnisse?</h4>
+      <p>Nein. Alles funktioniert per Copy & Paste. Der Guide zeigt dir jeden Schritt.</p>
+    </div>
+    <div class="faq-toggle">
+      <h4 onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block') ? 'none' : 'block'">Kann ich den Bot an meinen Salon anpassen?</h4>
+      <p>Ja. Du kannst Sprache, Services, Preise und Zeiten individuell einstellen.</p>
+    </div>
+    <div class="faq-toggle">
+      <h4 onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block') ? 'none' : 'block'">Funktioniert das auch im Ausland?</h4>
+      <p>Ja. Mehrsprachigkeit & Zeitzonen-Unterstützung sind integriert.</p>
+    </div>
 
-    <a id="buy" class="cta" href="https://nextweb.gumroad.com/l/whatsapp-salon-bot">Workflow jetzt kaufen</a>
+    <a id="buy" class="cta" href="https://nextweb.gumroad.com/l/whatsapp-salon-bot">Zum $39 Workflow auf Gumroad</a>
   </section>
 
   <footer>
-    <p>&copy; 2025 SmartSalonAI. Powered by n8n, WhatsApp API & AI.</p>
+    <p>&copy; 2025 SmartSalonAI. Entwickelt mit n8n, GPT und WhatsApp Business API.</p>
   </footer>
 </body>
 </html>
