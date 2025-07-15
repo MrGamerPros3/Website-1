@@ -1,147 +1,621 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SmartSalon AI - WhatsApp Automatisierung für Salons</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f6f7fb;
-      color: #1a1a1a;
-      line-height: 1.6;
-    }
-    header {
-      background: linear-gradient(135deg, #111827, #1f2937);
-      color: #fff;
-      text-align: center;
-      padding: 4rem 2rem;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-    }
-    header p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin: 0 auto 1.5rem;
-    }
-    .cta {
-      background: #10b981;
-      color: #fff;
-      padding: 0.9rem 2rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      display: inline-block;
-      margin-top: 1rem;
-      transition: background 0.3s ease;
-    }
-    .cta:hover {
-      background: #059669;
-    }
-    section {
-      max-width: 960px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
-    }
-    section h2 {
-      font-size: 1.8rem;
-      margin-top: 2rem;
-      color: #111827;
-    }
-    section ul {
-      padding-left: 1.2rem;
-    }
-    section ul li {
-      margin-bottom: 0.5rem;
-    }
-    .faq-toggle {
-      margin-top: 1rem;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      padding: 1rem;
-    }
-    .faq-toggle h4 {
-      cursor: pointer;
-      margin: 0;
-    }
-    .faq-toggle p {
-      display: none;
-      margin: 0.5rem 0 0;
-    }
-    footer {
-      background: #111827;
-      color: #ccc;
-      text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 4rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Salon Bot - WhatsApp Terminbuchung für Ihr Salon</title>
+    <meta name="description" content="Revolutionieren Sie Ihren Salon mit KI-gestützter WhatsApp Automatisierung. 24/7 Terminbuchung, Kundenverwaltung und mehr.">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #FFD700;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            z-index: 2;
+            color: white;
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        .cta-button {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #333;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .pricing h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .pricing-card.featured {
+            border-color: #FFD700;
+            transform: scale(1.05);
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin: 1rem 0;
+        }
+        
+        .price-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .price-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Legal Section */
+        .legal {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+        
+        .legal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .legal-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .legal-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+        
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a:hover {
+            color: #FFD700;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .features-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>SmartSalon AI</h1>
-    <p>Automatisiere Terminbuchungen für deinen Salon mit WhatsApp, Google Kalender & KI</p>
-    <a href="#buy" class="cta">Jetzt für $39 starten</a>
-  </header>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">AI Salon Bot</a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Preise</a></li>
+                <li><a href="#legal">Rechtliches</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <section>
-    <h2>✨ Was dieser Bot macht</h2>
-    <ul>
-      <li><strong>📱 Sofortige Terminbuchung:</strong> Kunden buchen direkt über WhatsApp</li>
-      <li><strong>🤖 Intelligente Gespräche:</strong> KI beantwortet Fragen, storniert & verschiebt Termine</li>
-      <li><strong>📅 Kalender-Integration:</strong> Automatisch in Google Kalender eintragen</li>
-      <li><strong>📈 Airtable-Sync:</strong> Kunden & Services in Datenbank verwalten</li>
-      <li><strong>⛨ Fehlerhandling:</strong> Schutz vor Spam, Backups, Owner-Alerts</li>
-    </ul>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Revolutionieren Sie Ihren Salon mit KI</h1>
+                <p>24/7 WhatsApp Terminbuchung • Automatische Kundenverwaltung • Nie wieder verpasste Buchungen</p>
+                <a href="#contact" class="cta-button">Jetzt starten - Komplett eingerichtet!</a>
+            </div>
+        </div>
+    </section>
 
-    <h2>📦 Was du bekommst</h2>
-    <ul>
-      <li>✅ Vollständiger n8n Workflow (200+ Nodes)</li>
-      <li>✅ Setup-Guide mit Screenshots</li>
-      <li>✅ Airtable-Templates für Services, Buchungen, Config</li>
-      <li>✅ Checkliste für alle API-Verbindungen</li>
-    </ul>
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Alles was Ihr Salon braucht</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📱</div>
+                    <h3>Sofortige Terminbuchung</h3>
+                    <p>Kunden buchen direkt über WhatsApp. Die KI prüft Ihren Kalender in Echtzeit und erstellt automatisch Google Calendar-Termine.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🤖</div>
+                    <h3>Intelligente Gespräche</h3>
+                    <p>Versteht Deutsch und Englisch. Bearbeitet Buchungen, Stornierungen und Terminverschiebungen. Professionelle, menschenähnliche Antworten.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📊</div>
+                    <h3>Komplette Verwaltung</h3>
+                    <p>Synchronisiert mit Airtable-Datenbank. Verwaltet alle Kundeninformationen, Dienstleistungen und Preise. Automatisches Erinnerungssystem.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Integrierter Schutz</h3>
+                    <p>Spam-Schutz durch Rate-Limiting. Fehlerbehandlung mit Backup-Systemen. Benachrichtigungen für wichtige Ereignisse.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Für alle Salons</h3>
+                    <p>Perfekt für Nagelstudios, Friseursalons, Kosmetikstudios und Spas. Anpassbar an Ihre spezifischen Bedürfnisse.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Sofort einsatzbereit</h3>
+                    <p>Wir richten alles ein, hosten den Bot und sorgen für die Wartung. Sie müssen sich um nichts kümmern!</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <h2>💸 Warum sich das lohnt</h2>
-    <p><strong>Spart Zeit:</strong> Reduziert Anrufaufwand um 70%, arbeitet rund um die Uhr.</p>
-    <p><strong>Mehr Umsatz:</strong> Buchungen außerhalb der Öffnungszeiten, weniger No-Shows.</p>
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>Transparente Preise</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">€199</div>
+                    <p>Einmalige Einrichtung</p>
+                    <ul class="price-features">
+                        <li>Komplette Bot-Einrichtung</li>
+                        <li>WhatsApp Business Integration</li>
+                        <li>Google Calendar Synchronisation</li>
+                        <li>Airtable Datenbank Setup</li>
+                        <li>Grundlegende Dienstleistungen</li>
+                        <li>30 Tage Support</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">+ €49/Monat Hosting & Wartung</p>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Professional</h3>
+                    <div class="price">€299</div>
+                    <p>Einmalige Einrichtung</p>
+                    <ul class="price-features">
+                        <li>Alles aus Starter</li>
+                        <li>Erweiterte KI-Funktionen</li>
+                        <li>Individuelle Anpassungen</li>
+                        <li>Mehrsprachiger Support</li>
+                        <li>Erweiterte Statistiken</li>
+                        <li>60 Tage Support</li>
+                        <li>Schulung für Ihr Team</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">+ €79/Monat Hosting & Wartung</p>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">€499</div>
+                    <p>Einmalige Einrichtung</p>
+                    <ul class="price-features">
+                        <li>Alles aus Professional</li>
+                        <li>Mehrere Standorte</li>
+                        <li>API-Integrationen</li>
+                        <li>Prioritäts-Support</li>
+                        <li>Backup-Systeme</li>
+                        <li>90 Tage Support</li>
+                        <li>Monatliche Optimierung</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">+ €129/Monat Hosting & Wartung</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <h2>🚀 Technische Voraussetzungen</h2>
-    <ul>
-      <li>n8n Account</li>
-      <li>WhatsApp Business API Zugang</li>
-      <li>Google Kalender & Airtable (Free Tier reicht)</li>
-      <li>OpenAI API + Google Gemini</li>
-      <li>Redis (kostenlos nutzbar)</li>
-    </ul>
+    <section id="legal" class="legal">
+        <div class="container">
+            <h2>Rechtliche Informationen</h2>
+            <div class="legal-grid">
+                <div class="legal-card">
+                    <h3>Datenschutz (DSGVO)</h3>
+                    <p>Alle Kundendaten werden DSGVO-konform verarbeitet und gespeichert. Wir verwenden sichere, verschlüsselte Verbindungen und speichern nur notwendige Daten. Kunden können jederzeit die Löschung ihrer Daten verlangen.</p>
+                </div>
+                <div class="legal-card">
+                    <h3>Impressum</h3>
+                    <p><strong>Muster GmbH</strong><br>
+                    Musterstraße 123<br>
+                    12345 Musterstadt<br>
+                    Deutschland<br>
+                    Tel: +49 (0) 123 456789<br>
+                    E-Mail: info@ai-salon-bot.de<br>
+                    Geschäftsführer: Max Mustermann<br>
+                    Handelsregister: HRB 123456 Amtsgericht Musterstadt</p>
+                </div>
+                <div class="legal-card">
+                    <h3>Allgemeine Geschäftsbedingungen</h3>
+                    <p>Unsere AGB regeln die Nutzung des AI Salon Bot Services. Der Service wird als Software-as-a-Service (SaaS) bereitgestellt. Kündigungsfristen, Haftungsbeschränkungen und Gewährleistungen sind in den vollständigen AGB definiert.</p>
+                </div>
+                <div class="legal-card">
+                    <h3>Service Level Agreement</h3>
+                    <p>Wir garantieren eine Verfügbarkeit von 99,5%. Bei Ausfällen erhalten Sie anteilige Rückerstattungen. Unser Support-Team steht Ihnen während der Geschäftszeiten zur Verfügung.</p>
+                </div>
+                <div class="legal-card">
+                    <h3>Lizenz & Nutzungsrechte</h3>
+                    <p>Sie erhalten eine nicht-exklusive Lizenz zur Nutzung des AI Salon Bot für Ihren Salon. Die Software bleibt unser Eigentum. Reverse Engineering oder Weitervertrieb sind nicht gestattet.</p>
+                </div>
+                <div class="legal-card">
+                    <h3>Haftung & Gewährleistung</h3>
+                    <p>Wir übernehmen keine Haftung für entgangene Gewinne oder indirekte Schäden. Die Gewährleistung beschränkt sich auf die Funktionsfähigkeit des Services gemäß der Leistungsbeschreibung.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <h2>❓ Häufige Fragen</h2>
-    <div class="faq-toggle">
-      <h4 onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block') ? 'none' : 'block'">Benötige ich Programmierkenntnisse?</h4>
-      <p>Nein. Alles funktioniert per Copy & Paste. Der Guide zeigt dir jeden Schritt.</p>
-    </div>
-    <div class="faq-toggle">
-      <h4 onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block') ? 'none' : 'block'">Kann ich den Bot an meinen Salon anpassen?</h4>
-      <p>Ja. Du kannst Sprache, Services, Preise und Zeiten individuell einstellen.</p>
-    </div>
-    <div class="faq-toggle">
-      <h4 onclick="this.nextElementSibling.style.display = (this.nextElementSibling.style.display === 'block') ? 'none' : 'block'">Funktioniert das auch im Ausland?</h4>
-      <p>Ja. Mehrsprachigkeit & Zeitzonen-Unterstützung sind integriert.</p>
-    </div>
+    <section id="contact" class="pricing">
+        <div class="container">
+            <h2>Jetzt starten</h2>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name des Salons</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="owner">Inhaber/Ansprechpartner</label>
+                        <input type="text" id="owner" name="owner" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-Mail</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefon</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Art des Salons</label>
+                        <select id="type" name="type" style="width: 100%; padding: 12px; border: none; border-radius: 8px; background: rgba(255, 255, 255, 0.9); font-size: 1rem;">
+                            <option>Nagelstudio</option>
+                            <option>Friseursalon</option>
+                            <option>Kosmetikstudio</option>
+                            <option>Spa</option>
+                            <option>Sonstiges</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="package">Gewünschtes Paket</label>
+                        <select id="package" name="package" style="width: 100%; padding: 12px; border: none; border-radius: 8px; background: rgba(255, 255, 255, 0.9); font-size: 1rem;">
+                            <option>Starter (€199 + €49/Monat)</option>
+                            <option>Professional (€299 + €79/Monat)</option>
+                            <option>Enterprise (€499 + €129/Monat)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Nachricht (optional)</label>
+                        <textarea id="message" name="message" placeholder="Besondere Anforderungen oder Fragen..."></textarea>
+                    </div>
+                    <button type="submit" class="cta-button" style="width: 100%;">Kostenlose Beratung anfordern</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
-    <a id="buy" class="cta" href="https://nextweb.gumroad.com/l/whatsapp-salon-bot">Zum $39 Workflow auf Gumroad</a>
-  </section>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Service</h4>
+                    <a href="#">Funktionen</a>
+                    <a href="#">Preise</a>
+                    <a href="#">Support</a>
+                    <a href="#">FAQ</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Rechtliches</h4>
+                    <a href="#">Impressum</a>
+                    <a href="#">Datenschutz</a>
+                    <a href="#">AGB</a>
+                    <a href="#">Widerrufsrecht</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Kontakt</h4>
+                    <a href="mailto:info@ai-salon-bot.de">info@ai-salon-bot.de</a>
+                    <a href="tel:+49123456789">+49 (0) 123 456789</a>
+                    <a href="#">Live-Chat</a>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #555; padding-top: 2rem; margin-top: 2rem;">
+                <p>&copy; 2025 AI Salon Bot. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
 
-  <footer>
-    <p>&copy; 2025 SmartSalonAI. Entwickelt mit n8n, GPT und WhatsApp Business API.</p>
-  </footer>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .pricing-card, .legal-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Vielen Dank für Ihr Interesse! Wir melden uns innerhalb von 24 Stunden bei Ihnen.');
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(15px)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.1)';
+                header.style.backdropFilter = 'blur(10px)';
+            }
+        });
+    </script>
 </body>
 </html>
